@@ -2,8 +2,8 @@
 
 Use the following credentials to log in:
 
-* **Email**: `admin@gmail.com`
-* **Password**: `admin123`
+* **Email**: `hello@gmail.com`
+* **Password**: `hello`
 
 ---
 
