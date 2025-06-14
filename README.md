@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+### Login Credentials
 
-## Getting Started
+Use the following credentials to log in:
 
-First, run the development server:
+* **Email**: `admin@gmail.com`
+* **Password**: `admin123`
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### How It Works
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+* Built using **Next.js 13+** App Router with `"use client"` to enable interactive behavior in React components.
+* Widgets are placed absolutely and rendered dynamically with custom dimensions and positions.
+* **Edit Mode** toggle allows users to drag and resize widgets using **interact.js**.
+* When widgets overlap during movement, they are automatically pushed apart to avoid clutter.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+### Modules and Libraries Used
 
-To learn more about Next.js, take a look at the following resources:
+* **Next.js 13+** – For routing and React-based SSR
+* **interact.js** – For drag-and-drop and resize functionality
+* **React** – Component-based structure
+* **CSS Modules** – Local scoped styles for dashboard and widgets
+* **Custom Widgets** – Built-in Clock, Todo List, Calendar, Quote Generator, Slideshow
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Setup and Run Locally
 
-## Deploy on Vercel
+1. Clone the repository:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   ```bash
+   git clone https://github.com/your-username/your-dashboard-repo.git
+   cd your-dashboard-repo
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+2. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Start the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+4. Open in browser:
+
+   ```
+   http://localhost:3000
+   ```
+
+---
+
+Let me know if you want to include instructions for deployment or customizing widgets.
