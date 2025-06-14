@@ -1,13 +1,12 @@
-### Login Credentials
+Login Credentials
 
 Use the following credentials to log in:
-
-* **Email**: `hello@gmail.com`
-* **Password**: `hello`
+Email : `hello@gmail.com`
+Password : `hello`
 
 ---
 
-### How It Works
+ How It Works
 
 * Built using **Next.js 13+** App Router with `"use client"` to enable interactive behavior in React components.
 * Widgets are placed absolutely and rendered dynamically with custom dimensions and positions.
@@ -16,7 +15,7 @@ Use the following credentials to log in:
 
 ---
 
-### Modules and Libraries Used
+ Modules and Libraries Used
 
 * **Next.js 13+** – For routing and React-based SSR
 * **interact.js** – For drag-and-drop and resize functionality
@@ -31,8 +30,7 @@ Use the following credentials to log in:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/your-dashboard-repo.git
-   cd your-dashboard-repo
+   git clone https://github.com/NizamAashiqIsmail/dashboard.git
    ```
 
 2. Install dependencies:
@@ -52,7 +50,3 @@ Use the following credentials to log in:
    ```
    http://localhost:3000
    ```
-
----
-
-Let me know if you want to include instructions for deployment or customizing widgets.
