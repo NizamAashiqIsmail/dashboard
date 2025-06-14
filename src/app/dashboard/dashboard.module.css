@@ -1,0 +1,83 @@
+.dashboardContainer {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+  background: #4496b2;
+  padding: 20px;
+}
+
+.widget {
+  position: absolute;
+  border-radius: 16px;
+  background: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border: 2px solid #a89ee0;
+  overflow: hidden;
+  display: flex;
+  border-width: 5px;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+}
+
+.widget h2 {
+  font-size: 18px;
+  margin: 10px;
+}
+
+.toggleSwitch {
+  width: 50px;
+  height: 28px;
+  background: #e0d0df;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  padding: 3px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  margin-left: auto; /* pushes it to the right */
+}
+
+.circle {
+  height: 22px;
+  width: 22px;
+  border-radius: 50%;
+  background: #7665cb;
+  transition: transform 0.3s ease;
+}
+
+.active {
+  background: #c1f0dc !important;
+  
+}
+
+.active .circle {
+  transform: translateX(22px);
+  background: #00c77a;
+}
+
+.topBar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  background: #fff;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px; /* reduced gap */
+}
+
+.heading {
+  font-size: 30px;
+  font-weight: 600;
+  color: black;
+  text-align: center;
+  padding-left: 45%;
+  border-color: #7665cb;
+}
