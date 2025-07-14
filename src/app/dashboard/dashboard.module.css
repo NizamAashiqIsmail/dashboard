@@ -1,48 +1,85 @@
 .dashboardContainer {
   position: relative;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
-  overflow: auto;
-  background: #4496b2;
-  padding: 20px;
-}
-
-.widget {
-  position: absolute;
-  border-radius: 16px;
-  background: white;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  border: 2px solid #a89ee0;
   overflow: hidden;
-  display: flex;
-  border-width: 5px;
-  flex-direction: column;
-  align-items: center;
-  padding: 10px;
+  background: url('/images/bg.jpg');
+  background-size: cover;
+  background-position: center;
+  padding: 100px 30px 30px;
+  box-sizing: border-box;
 }
 
-.widget h2 {
-  font-size: 18px;
-  margin: 10px;
+.topBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: 160px;
+  background-color: #e0e0e0;
+  padding: 0 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+  border-bottom-left-radius: 40px;
+  border-bottom-right-radius: 40px;
+}
+
+.heading {
+  font-size: 48px;
+  font-weight: 800;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.radioButtons {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.radioBtn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 3px solid #888;
+  transition: background 0.2s;
+}
+
+.radioBtn.green {
+  background: #4CAF50;
+  border-color: #4CAF50;
+}
+
+.radioBtn.red {
+  background: #F44336;
+  border-color: #F44336;
+}
+
+.radioBtn.inactive {
+  background: transparent;
+  border-color: #aaa;
 }
 
 .toggleSwitch {
-  width: 50px;
-  height: 28px;
-  background: #e0d0df;
-  border-radius: 50px;
+  width: 90px;
+  height: 50px;
+  background: rgb(239, 195, 239);
+  border-radius: 60px;
   display: flex;
   align-items: center;
-  padding: 3px;
+  padding: 6px;
   cursor: pointer;
   transition: background 0.3s ease;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-  margin-left: auto; /* pushes it to the right */
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
 }
 
 .circle {
-  height: 22px;
-  width: 22px;
+  height: 38px;
+  width: 38px;
   border-radius: 50%;
   background: #7665cb;
   transition: transform 0.3s ease;
@@ -50,34 +87,302 @@
 
 .active {
   background: #c1f0dc !important;
-  
 }
 
 .active .circle {
-  transform: translateX(22px);
+  transform: translateX(38px);
   background: #00c77a;
 }
 
-.topBar {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  width: 100%;
-  background: #fff;
-  padding: 10px 20px;
+.widget {
+  position: absolute;
+  border-radius: 24px;
+  background: white;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  border: 5px solid #a89ee0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  transition: box-shadow 0.3s ease;
+}
+
+.widget h2 {
+  font-size: 24px;
+  margin: 14px;
+}
+
+.fixed {
+  position: relative;
+  z-index: 10;
+}
+
+.fixed::before {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border-radius: 24px;
+  background: linear-gradient(45deg, #a89ee0, #8e44ad, #a89ee0);
+  background-size: 400% 400%;
+  animation: glowBorderFlow 3s ease infinite;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.widgetPanel {
+  position: fixed;
+  top: 160px;
+  right: 0;
+  width: 460px;
+  height: calc(100vh - 160px);
+  background:
+    linear-gradient(to bottom right, rgba(255, 255, 255, 0.95), rgba(240, 240, 255, 1)),
+    url('/images/panel-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  box-shadow: -8px 0 18px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  padding: 36px;
+  border-top-left-radius: 36px;
+  border-bottom-left-radius: 36px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: all 0.3s ease-in-out;
+  overflow-y: auto;
+}
+
+.panelHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  text-align: center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  margin-bottom: 10px; /* reduced gap */
+  font-weight: bold;
+  font-size: 24px;
+  margin-bottom: 24px;
+  color: #2c2c54;
 }
 
-.heading {
+.panelHeader button {
+  background: transparent;
+  border: none;
   font-size: 30px;
-  font-weight: 600;
-  color: black;
-  text-align: center;
-  padding-left: 45%;
-  border-color: #7665cb;
+  cursor: pointer;
+  color: #333;
 }
+
+.widgetList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 12px;
+}
+
+.widgetOption {
+  padding: 20px;
+  background-color: #f8f5ff;
+  border: 2px solid #a89ee0;
+  border-radius: 16px;
+  text-align: center;
+  font-weight: 600;
+  color: #3a3165;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 20px;
+}
+
+.widgetOption:hover {
+  background-color: #e7ddff;
+  transform: scale(1.05);
+}
+
+.alignmentPopup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(8px);
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 99999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.3s ease;
+}
+
+.popupContent {
+  background: white;
+  padding: 120px 140px;
+  border-radius: 40px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+  text-align: center;
+  max-width: 900px;
+  width: 95%;
+  animation: scaleIn 0.4s ease;
+}
+
+.popupContent h2 {
+  margin-bottom: 28px;
+  font-size: 42px;
+  color: #2c2c54;
+}
+
+.popupContent p {
+  font-size: 28px;
+  color: #444;
+  margin-bottom: 48px;
+}
+
+.popupButtons {
+  display: flex;
+  justify-content: space-around;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.popupButtons button {
+  padding: 24px 50px;
+  font-size: 26px;
+  border: none;
+  border-radius: 20px;
+  background: #7d5fff;
+  color: white;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  min-width: 240px;
+}
+
+.popupButtons button:hover {
+  background: #6a4eea;
+}
+
+.doneBtn {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  background: #00c77a;
+  color: white;
+  font-size: 28px;
+  padding: 26px 50px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  z-index: 10000;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.3);
+  transition: background 0.2s ease;
+}
+
+.doneBtn:hover {
+  background-color: #00a362;
+}
+
+.buttonWithLabel {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 20px;
+  font-weight: 500;
+  color: #333;
+}
+.labelText {
+  font-size: 22px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #222;
+  margin-bottom: 0px;
+}
+.removeHint {
+  position: absolute;
+  top: 170px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(255, 220, 220, 0.97);
+  color: #c40000;
+  font-size: 32px;        /* larger text */
+  font-weight: 700;
+  padding: 20px 32px;     /* increased height and spacing */
+  border-radius: 20px;    /* more rounded */
+  white-space: nowrap;
+  z-index: 2;
+  pointer-events: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+.alignHint {
+  position: absolute;
+  top: 170px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(220, 240, 255, 0.97);
+  color: #005b99;
+  font-size: 32px;
+  font-weight: 700;
+  padding: 20px 32px;
+  border-radius: 20px;
+  white-space: nowrap;
+  z-index: 2;
+  pointer-events: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+@keyframes glowBorderFlow {
+  0% {
+    background-position: 0% 50%;
+    filter: drop-shadow(0 0 6px rgba(170, 102, 255, 0.4));
+  }
+  50% {
+    background-position: 100% 50%;
+    filter: drop-shadow(0 0 12px rgba(170, 102, 255, 0.8));
+  }
+  100% {
+    background-position: 0% 50%;
+    filter: drop-shadow(0 0 6px rgba(170, 102, 255, 0.4));
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  0% { transform: scale(0.85); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@media (max-width: 768px) {
+  .popupContent {
+    padding: 60px 30px;
+  }
+
+  .popupContent h2 {
+    font-size: 28px;
+  }
+
+  .popupContent p {
+    font-size: 18px;
+  }
+
+  .popupButtons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .popupButtons button {
+    width: 100%;
+    font-size: 20px;
+    padding: 16px;
+  }
+
+  .doneBtn {
+    font-size: 22px;
+    padding: 20px 40px;
+    bottom: 20px;
+    right: 20px;
+  }
+}
+
+

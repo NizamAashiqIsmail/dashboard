@@ -25,8 +25,8 @@ export default function LoginPage() {
 
         <div className="space-y-4">
           <input
-            type="email"
-            placeholder="Email"
+            type="text"
+            placeholder="User Name"
             className="w-full px-4 py-2 rounded-md bg-slate-800 text-white placeholder-gray-400 border border-slate-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -51,8 +51,11 @@ export default function LoginPage() {
         </div>
           <hr></hr>
         <p className="text-center text-xs text-gray-500 mt-6">
-          Don’t have an account? Contact your administrator.
-        </p>
+      Don’t have an account?{' '}
+      <a href="/registeraccount" className="text-blue-400 underline hover:text-blue-300">
+      Create one
+      </a>
+      </p>
       </div>
     </div>
   );

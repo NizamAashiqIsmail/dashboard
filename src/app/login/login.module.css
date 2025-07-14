@@ -1,29 +1,100 @@
-
 .container {
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(to bottom right, #6e105a, #21d6a6);
-  padding: 1.5rem;
-  font-family: 'Inter', sans-serif;
-
+  background: url('/images/bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 2rem;
+  font-family: 'Poppins', sans-serif;
 }
 
 .card {
   background-color: #fbf7f7;
-  border: 1px solid #0f83aa;
-  border-radius: 1rem;
-  box-shadow: 0 0 20px rgba(225, 85, 85, 0.4);
-  padding: 2.5rem;
+  border: 2px solid #0f83aa;
+  border-radius: 2rem;
+  box-shadow: 0 0 30px rgba(225, 85, 85, 0.4);
+  padding: 5rem;
   width: 100%;
-  max-width: 600px;
-  max-height: 900px;
+  max-width: 1100px;
+  font-size: 190%;
   color: #050404;
   transition: all 0.3s ease;
 }
 
-.card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 40px rgba(0, 166, 255, 0.6);
+.card h1 {
+  font-size: 3.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-weight: 700;
+  color: #0f83aa;
+}
+
+.subtext {
+  font-size: 1.2rem;
+  text-align: center;
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+
+
+.card input::placeholder {
+  font-size: 1.3rem;
+  color: #888;
+}
+
+.card input:focus {
+  border-color: #21d6a6;
+  box-shadow: 0 0 12px rgba(33, 214, 166, 0.4);
+}
+
+.card input {
+  width: 100%;
+  padding: 1.4rem;
+  margin-top: 1rem;         /* smaller margin */
+  margin-bottom: 1rem;      /* smaller margin */
+  font-size: 1.5rem;
+  font-weight: 500;
+  border: 2px solid #0f83aa;
+  border-radius: 1rem;
+  background-color: #ffffff;
+  color: #333;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  box-shadow: 0 0 10px rgba(15, 131, 170, 0.1);
+}
+
+.card button {
+  display: block;
+  width: auto;
+  padding: 1rem 2rem;
+  margin: 1.5rem auto 0 auto; /* reduced top margin */
+  background-color: #0f83aa;
+  color: white;
+  border: none;
+  border-radius: 0.75rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+.card button:hover {
+  background-color: #0cb79a;
+  transform: scale(1.03);
+}
+
+.footer {
+  font-size: 1.1rem;
+  text-align: center;
+  margin-top: 2rem;
+  color: #666;
+}
+
+.footer a {
+  color: #0f83aa;
+  font-weight: 600;
+  text-decoration: underline;
 }
