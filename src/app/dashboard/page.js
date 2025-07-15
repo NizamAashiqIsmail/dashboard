@@ -34,7 +34,7 @@ const Dashboard = () => {
   const [showAlignmentPopup, setShowAlignmentPopup] = useState(false);
   const [fixedWidgetIds, setFixedWidgetIds] = useState([]);
   const [alignmentMode, setAlignmentMode] = useState(null);
-
+  const isLocked = alignmentMode === 'selecting';
   const widgetRefs = useRef({});
   const containerRef = useRef(null);
 
@@ -200,18 +200,38 @@ const Dashboard = () => {
   };
 
   const toggleEditMode = () => {
-    if (editMode) {
-      setShowAlignmentPopup(true);
-    } else {
-      setEditMode(true);
-    }
-  };
+  if (isLocked) return;
+  if (editMode) {
+    setShowAlignmentPopup(true);
+  } else {
+    setRemoveMode(false);
+    setShowWidgetPanel(false);
+    setEditMode(true);
+  }
+};
 
-  const toggleRemoveMode = () => setRemoveMode(prev => !prev);
+
+
+const toggleRemoveMode = () => {
+  if (isLocked) return;
+  setRemoveMode(prev => {
+    const newValue = !prev;
+    if (newValue) {
+      setEditMode(false);
+      setShowWidgetPanel(false);
+    }
+    return newValue;
+  });
+};
+
+
 
   const handleRemoveWidget = (id) => {
-    setWidgets(prev => prev.filter(w => w.id !== id));
-  };
+  const updated = widgets.filter(w => w.id !== id);
+  setWidgets(updated);
+  saveLayoutToServer(updated); // ✅ This saves the layout without the removed widget
+};
+
 
   const handleWidgetAdd = (id) => {
     if (widgets.find(w => w.id === id)) return;
@@ -257,7 +277,23 @@ const Dashboard = () => {
         </div>
       <div className={styles.buttonWithLabel}>
         <span className={styles.labelText}>Add</span>
-        <div className={`${styles.radioBtn} ${showWidgetPanel ? styles.green : styles.inactive}`} onClick={() => setShowWidgetPanel(prev => !prev)} style={{ borderColor: 'green' }} />
+        <div
+  className={`${styles.radioBtn} ${showWidgetPanel ? styles.green : styles.inactive}`}
+  onClick={() => {                         /*done button */
+    if (isLocked) return;
+    setShowWidgetPanel(prev => {
+      const newValue = !prev;
+      if (newValue) {
+        setRemoveMode(false);
+        setEditMode(false);
+      }
+      return newValue;
+    });
+  }}
+  style={{ borderColor: 'green' }}
+/>
+
+
       </div>
       <div className={styles.buttonWithLabel}>
         <span className={styles.labelText}>{editMode ? 'On' : 'Off'}</span>
@@ -269,7 +305,7 @@ const Dashboard = () => {
 
       </div>
     {removeMode && (
-      <div className={styles.removeHint}>Turn on the toggle and Double tap on the widget you like to remove
+      <div className={styles.removeHint}>Double tap on the widget you like to remove
       </div>
     )}
     {alignmentMode === 'selecting' && (
@@ -334,20 +370,28 @@ const Dashboard = () => {
             widgetRefs.current[widget.id] = el;
           }}
           className={`${styles.widget} ${fixedWidgetIds.includes(widget.id) ? styles.fixed : ''} ${alignmentMode === 'selecting' && fixedWidgetIds.includes(widget.id) ? styles.vibrate : ''}`}
-          style={{
-            position: 'absolute',
-            pointerEvents: editMode ? 'auto' : 'none',
-          }}
+         style={{
+  position: 'absolute',
+  pointerEvents: (editMode || removeMode || isLocked) ? 'auto' : 'none',
+}}
+
+
           onDoubleClick={() => {
-            if (removeMode) return handleRemoveWidget(widget.id);
-            if (alignmentMode === 'selecting') {
-              setFixedWidgetIds(prev =>
-                prev.includes(widget.id)
-                  ? prev.filter(id => id !== widget.id)
-                  : [...prev, widget.id]
-              );
-            }
-          }}
+  if (removeMode) {
+    console.log('Removing widget:', widget.id);
+    return handleRemoveWidget(widget.id);
+  }
+
+  if (alignmentMode === 'selecting') {
+    console.log('Toggling FIX for widget:', widget.id);
+    setFixedWidgetIds(prev =>
+      prev.includes(widget.id)
+        ? prev.filter(id => id !== widget.id)
+        : [...prev, widget.id]
+    );
+  }
+}}
+
         >
           <h2>{widget.id.toUpperCase()}</h2>
           {renderWidgetContent(widget.id)}
